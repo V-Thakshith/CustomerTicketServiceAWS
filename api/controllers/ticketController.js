@@ -229,8 +229,13 @@ exports.createTicket = async (req, res) => {
   try {
     const { title, description, customerId, category } = req.body;
 
-    // Handle attachments, if any. Multer will store files in S3 and req.files will contain the S3 file metadata.
-    const attachments = req.files ? req.files.map(file => file.location) : []; // Use the S3 URL (file.location)
+    let attachments = [];
+    if (req.files && req.files.length > 0) {
+      attachments = req.files.map(file => {
+        // Adjust path if needed (ensure correct path to file)
+        return file.path ? file.path : file.location; // Handle both local storage and S3 scenarios
+      });
+    }
 
     // Validate input: Check if required fields are missing
     if (!title || !description || !customerId) {
