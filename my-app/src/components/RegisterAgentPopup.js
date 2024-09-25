@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import './RegisterAgentPopup.css'; // Import CSS for styling
 import api from'../apiForManager';
 
-const RegisterAgentPopup = ({ onClose }) => {
+const RegisterAgentPopup = ({ handleClose }) => {
   const [agentData, setAgentData] = useState({
     fullName: '', // Use fullName as expected by the API
     signupEmail: '', // Use signupEmail
@@ -71,9 +71,8 @@ const RegisterAgentPopup = ({ onClose }) => {
     try {
       const { data } = await api.post('/auth/registerAgent', agentData); // Post data to the correct endpoint
       alert('Agent registered successfully!');
-      onClose(); // Close the popup
+      handleClose(); // Close the popup
     } catch (error) {
-      setErrorMessage('Failed to register agent.');
       console.error('Error registering agent:', error);
     }
   };
@@ -89,7 +88,7 @@ const RegisterAgentPopup = ({ onClose }) => {
   return (
     <div className="popup-overlay">
       <div className="popup-content">
-        <button className="close-button" onClick={onClose}>X</button>
+        <button className="close-button" onClick={handleClose}>X</button>
         <h2>Register Agent</h2>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <form onSubmit={handleRegister}>

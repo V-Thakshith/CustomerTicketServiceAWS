@@ -9,7 +9,7 @@ const roleMiddleware = (roles) => {
     try {
       // Extract user from request
       const user = req.user;
-
+      console.log("This is role middleware",user)
       // Ensure user is authenticated
       if (!user) return res.status(401).json({ msg: 'Unauthorized' });
 

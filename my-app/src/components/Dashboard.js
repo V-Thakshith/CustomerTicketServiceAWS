@@ -135,10 +135,8 @@ const Dashboard = () => {
     <div className="sidebar1">
         <div className="logo">Teleassist</div>
         <nav className="nav-menu">
-            <a href="#home">Home</a>
             <a href="#tickets">Tickets</a>
-            <a href="#reports">Reports</a>
-            <a href="#settings">Settings</a>
+            <a href="#reports">Resolved Tickets</a>
         </nav>
     </div>
  
