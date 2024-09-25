@@ -14,7 +14,7 @@ const s3 = new AWS.S3();
 const upload = multer({
     storage: multerS3({
         s3: s3,
-        bucket: 'my-app-attachments', // Replace with your S3 bucket name
+        bucket: 'customerticket-attachments', // Replace with your S3 bucket name
         acl: 'public-read', // Files will be publicly accessible via URL
         key: function (req, file, cb) {
             const fileName = `${Date.now()}-${file.originalname}`;
